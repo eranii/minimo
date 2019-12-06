@@ -104,6 +104,9 @@ other = "{{ .Count }} mins read"
 [recentPosts]
 other = "Recent Posts"
 
+[recentSnippets]
+other = "Recent Snippets"
+
 [reply]
 other = "Reply"
 

@@ -1,0 +1,20 @@
+{{- $defaultConfig := .Site.Data.config.default.widgets.recent_snippets -}}
+{{- $configData := ( or .Site.Data.config.widgets.recent_snippets $defaultConfig ) -}}
+{{- $lang := .Site.Language.Lang -}}
+{{- $config := ( ( index $configData $lang ) | default $configData ) -}}
+
+{{- $length := ( $config.length | default 5 ) -}}
+
+<section class='widget widget-recent_snippets sep-after'>
+  <header>
+    <h4 class='title widget-title'>
+      {{- $config.title | default ( i18n "recentSnippets" ) -}}
+    </h4>
+  </header>
+
+  <ul class='list'>
+  {{ range ( first $length ( where .Site.RegularPages "Type" "in" $config.includeTypes ) ) }}
+    {{ .Render "li" }}
+  {{ end }}
+  </ul>
+</section>
